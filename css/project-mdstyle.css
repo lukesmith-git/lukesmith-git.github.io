@@ -1,0 +1,196 @@
+html, body {
+    height:100%;
+    align-self:center;
+}
+
+*{margin-left:0;}
+
+body {
+    background-color: #000000;
+    /* overflow: hidden; */
+}
+/* Top Banner Set Up */
+.banner {
+    background-color:#333;
+    overflow:hidden;
+}
+
+#topbanner {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+}
+
+#topbanner p#toptext {
+    float:left;
+    color:#f2f2f2;
+    text-align:start;
+    padding:0px 20% 0px 21%;
+    font-size:22px;
+}
+
+#topbanner a {
+    float:left;
+    color:#f2f2f2;
+    text-align:center;
+    padding:23px 50px;
+    text-decoration:none;
+    font-size: 22px;
+}
+
+#topbanner a:hover {
+    background-color:#c0bebe;
+    color:black;
+}
+
+#topbanner a.currentpage {
+    background-color:#cc2299;
+    color:white;
+}
+
+@media screen and (max-width: 600px) {
+    #topbanner a {
+      float: none;
+      display: block;
+    }
+
+    #topbanner p {
+        display:none;
+    }
+}
+
+/* Get side panel set up */
+#leftbar {
+    height: 100%;
+    width: 15%;
+    position: absolute;
+    z-index: 1;
+    top: 7.5%;
+    left: 0;
+    background-color: #333;
+    overflow-x:clip;
+    padding-top: 20px;
+}
+
+#leftbar.sidebar a, .dropbtn, #leftTitle {
+    padding: 10px, 8px, 10px, 24px;
+    text-decoration: none;
+    text-align: right;
+    font-size: 22px;
+    color: #a1a1a1;
+    display: block;
+    border: 1px white;
+    background: none;
+    width: 100%;
+    text-align: left;
+    outline: none;
+}
+
+#leftbar a, .dropbtn {
+    cursor: pointer;
+}
+
+#leftbar a:hover, .dropbtn:hover {
+    color: #f1f1f1;
+}
+
+.active {
+    background-color: #cc2299;
+    color: white;
+}
+
+.dropdowncontainer {
+    display: none;
+    background-color: #262626;
+    padding-left: 8px;
+}
+
+.fa-caret-down {
+    float: right;
+    padding-right: 8px;
+}
+
+.dropdowncontainer a.currentpage {
+    background-color: #f191d4;
+    color:white;
+}
+
+/* #leftbar {
+    box-shadow:0 10vh 0 0;
+    color: #333;
+} */
+
+/* body */
+.center {
+    margin-left:15.8%;
+    margin-top:6.5%;
+    margin-right:12%;
+    padding: 0px, 10px;
+}
+
+.center {
+    font-size: 18px;
+    color: rgb(255, 255, 255);
+}
+
+.projtitle  {
+    text-align: center;
+}
+
+.sechead {
+    margin-left: 1%;
+}
+
+.subhead {
+    margin-left: 2.5%;
+}
+
+.image {
+    display: block;
+    margin-left:auto;
+    margin-right:auto;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 50%;
+}
+
+.center a{
+    color:aqua;
+    text-decoration: none;
+}
+
+.bodypara {
+    margin-left: 5%;
+}
+
+/* .skilldesc {
+    margin-left: 5%;
+} */
+
+#bottompara {
+    padding-bottom: 5%;
+}
+
+footer {
+    position:relative;
+    float:left;
+    width:100%;
+}
+
+footer a {
+    text-anchor: middle;
+    font-size: 20px;
+    text-decoration: none;
+    color:#cc2299;
+    margin-left:46%;
+    margin-bottom: 10px;
+}
+
+table, th, td {
+    border: 2px solid #f191d4;
+    border-collapse: collapse;
+    margin-left:auto;
+    margin-right:auto;
+    width: 50%;
+}

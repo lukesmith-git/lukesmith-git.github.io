@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    
+    <head>
+        <title>
+           Luke Smith's Portfolio
+        </title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Luke Smith"> 
+        <link rel="stylesheet" href="../css/project-mdstyle.css">
+    </head>
+
+    <div class="site-container">
+    <body>
+        
+        <div class="banner" id="topbanner">
+            <!--<header style="background-color: aqua; text-align: center; border: 5px solid black;">-->
+                <!--<h1 style="background-color: antiquewhite; margin:5px; padding:5px;">Luke Smith's Portfolio</h1>-->
+            <p id="toptext">Data Science Portfolio</p>
+            <a href="../index.html">Home</a>
+            <a class="currentpage" href="projectpage.html">Projects</a>
+            <a href="../otherpages/contact.html">Contact Me</a>
+                <!--hr-->
+        </div>
+        <!-- img src="source" alt="aternate txt" width=x height=y--> 
+        <!-- tag style="css_property:value"-->
+        
+        <div class="sidebar" id="leftbar">
+            <p id="leftTitle">&nbsp;&nbsp;&nbsp;&nbsp;Links:</p></br>
+            <a href="https://github.com/lukesmith-git/Networking-Analysis/blob/main/Networking/workspace/notebook.ipynb" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;Source Code</a>
+            </br>
+            <a href="../docs/Resume.pdf" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;My Resume</a>
+            </br>
+            <a href="../docs/CV.pdf" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;My CV</a>
+            </br>
+            <a href="https://www.datacamp.com/certificate/DSA0012049565881" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;Certification</a>
+            </br>
+            <button class="dropbtn">&nbsp;&nbsp;&nbsp;Projects&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#x25B6;
+                <i class="fa fa-caret-down"></i>
+            </button> 
+            <div class="dropdowncontainer">
+                <a href="Indeed.html">Indeed Scraping</a>
+                </br>
+                <a href="Bike.html">Predicting Bike Ownership</a>
+                </br>
+                <a href="Food.html">Food Poisoning Claims</a>
+                </br>
+                <a class="currentpage" href="Networking.html">Networking Analysis</a>
+            </div>
+        </div>
+        
+        <!--Make the button work-->
+        <script type="text/javascript">
+            var dropdown = document.getElementsByClassName("dropbtn");
+            var i;
+
+            for (i = 0; i < dropdown.length; i++) {
+                dropdown[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var dropdownContent = this.nextElementSibling;
+                    if (dropdownContent.style.display === "block") {
+                        dropdownContent.style.display = "none";
+                    } else {
+                        dropdownContent.style.display = "block";
+                    }
+                });
+            }
+        </script>
+
+        <div class="center">
+            <h2 class="projtitle"> Employee/Department Networking Analysis </h2>
+            </hr>
+            <h3 class="sechead"> Background </h3>
+            <p class="bodypara">The data for this project was provided as part of a competition. The original notebook can be found by following the source code link on the left.</p>
+            <p class="bodypara">"You work in the analytics department of a multinational company, and the head of HR wants your help mapping out the company's employee network using message data. They plan to use the network map to understand interdepartmental dynamixs better and explore how the company shares information. The ultimate goal of this project is to think of ways to improve collaboration throughout the company."</p>
+
+            <h4 class="subhead"> The Data </h4>
+            <p class="bodypara">There are six months of information on inter-employee communication in the Messages dataset. For privacy reasons, only sender, receiver, and message length information are available. The Employees dataset contains information about the employee (listed by id). Available information is as follows.</p>
+            <table>
+                <caption style="text-align: center;"><b>Messages:</b></caption>
+                <tr>
+                    <th>Column Name</th>
+                    <th>Contents</th>
+                </tr>
+                <tr>
+                    <td>sender</td>
+                    <td>Represents the employee id of the sender of the message</td>
+                </tr>
+                <tr>
+                    <td>receiver</td>
+                    <td>Represents the employee id of the recipient of the message</td>
+                </tr>
+                <tr>
+                    <td>timestamp</td>
+                    <td>The date of the message</td>
+                </tr>
+                <tr>
+                    <td>message_length</td>
+                    <td>Length of the message in words</td>
+                </tr>
+            </table>
+        </br>
+            <table>
+                <caption style="text-align: center;"><b>Employees:</b></caption>
+                <tr>
+                    <th>Column Name</th>
+                    <th>Contents</th>
+                </tr>
+                <tr>
+                    <td>id</td>
+                    <td>Unique Employee identification number</td>
+                </tr>
+                <tr>
+                    <td>department</td>
+                    <td>The department the employee works in</td>
+                </tr>
+                <tr>
+                    <td>location</td>
+                    <td>The country where the employee lives</td>
+                </tr>
+                <tr>
+                    <td>age</td>
+                    <td>The age of the employee</td>
+                </tr>
+            </table>
+            <p class="bodypara" style="font-size: 16px;"><b>Acknowledgements:</b> <i>Pietro Panzarasa, Tore Opsahl, and Kathleen M. Carley. "Patterns and dynamics of users' behavior and interaction: Network analysis of an online community." Journal of the American Society for Information Science and Technology 60.5 (2009): 911-932.</i></p>
+            
+            <h3 class="sechead"> Summary </h3>
+            <p class="bodypara">This analysis examines where the company is succeeding and falling short in communication and collaboration. A company should always seek to improve in these areas; and as is shown later, approximately 13% of the company makes up 100% of communication, which should be alarming. Recommendations to boost performance will be made based on the results of analysis. The data explored is message data over the June-November 2021 timeframe, and employee information (id, age, location, department). The analysis is performed both on an individual and a departmental level to identify areas where improvements can be made. The top performing employees in contacts and number of messages sent are identified in the individual analysis, and the departments are ranked based on their message activity in the departmental analysis. Ultimately, the HR department should determine how to improve communication, the analysis will only show them where their efforts can best be focused.</p>
+
+            <h3 class="sechead"> Initial Findings </h3>
+            <p class="bodypara">The provided dataframes were combined into a single dataframe using a left join, which allowed us to see the messages sent by each employee (id). A column counting the number of messages each employee had received was also added to this new dataframe, which provided the following insights:</p>
+            <ol class="bodypara">
+                <li>of the 664 employees, only 85 employees were responsible for sending all 3500+ recorded messages.</li>
+                <li>there were 47 employees that did not receive any messages</li>
+                <li>every employee sent or received at least one message.</li>
+            </ol>
+            <p class="bodypara">Combining points 2 and 3, we can infer that the 47 employees sent messages but received no response, or message of any other kind. This may be a talking point for HR, as communication should flow both ways in general. Given the low number of senders, having 47/85 not receive a response is a point we will look into further.</p>
+
+            <h3 class="subhead">Individual Employee Stats </h3>
+            <img src="../docs/ugly_digraph.png" alt="ugly graph" class="image">
+            <p class="bodypara">The eyesore at the beginning of this section shows the flow of information between all of the individual employees. Each blue node represents an employee, where the inner circle did not send a message, and the outer being the 85 that did. While it may not bring joy to look at, the fact that it is messy is a good thing. It does show a good amount of communication between employees. Ideally, we would have one circle of nodes and an almost unreadable mass of black lines connecting them, which would indicate total communication. As is, though, the 85 employees that did send messages seem to be doing a good job of connecting the company.</p>
+
+            <h4 class="subhead">Unique Connections</h4>
+            <p class="bodypara">Further analysis was done on both the unique number of connections (the number of unique recipients an employee had sent messages to) as well as activity (total number of messages sent). The graphs following are visualizations of these points. The first shows that a majority of employees had between 0 and 15 unique connections (in fact the vast majority had 0, as 579 employees sent none) while the upper end had upwards of 60 unique connections. Looking further at this, we can highlight the five employees with the most connections (first table below). From the second figure, we are able to compare findings from unique connections and see if this correlates to the most active employees (second table), and are able to see a clear positive correlation between the number of sent messages and the number of unique contacts.</p>
+            <table>
+                <tr>
+                    <th>id</th>
+                    <th># of connections</th>
+                </tr>
+                <tr>
+                    <td>598</td>
+                    <td>77</td>
+                </tr>
+                <tr>
+                    <td>144</td>
+                    <td>75</td>
+                </tr>
+                <tr>
+                    <td>128</td>
+                    <td>71</td>
+                </tr>
+                <tr>
+                    <td>605</td>
+                    <td>68</td>
+                </tr>
+                <tr>
+                    <td>586</td>
+                    <td>64</td>
+                </tr>
+            </table>
+        </br>
+            <table>
+                <tr>
+                    <th>id</th>
+                    <th># of sent messages</th>
+                </tr>
+                <tr>
+                    <td>605</td>
+                    <td>459</td>
+                </tr>
+                <tr>
+                    <td>128</td>
+                    <td>266</td>
+                </tr>
+                <tr>
+                    <td>144</td>
+                    <td>221</td>
+                </tr>
+                <tr>
+                    <td>509</td>
+                    <td>216</td>
+                </tr>
+                <tr>
+                    <td>389</td>
+                    <td>196</td>
+                </tr>
+            </table>
+            <img src="../docs/employee_connections.png" alt="connections" class="image">
+            <img src="../docs/connections_by_sent_msg.png" alt="connections v msgs" class="image">
+            
+            <h4 class="subhead"> Further Analysis </h4>
+            <p class="bodypara">Another point of interest is looking at separating employees by age and location. This does not yield very much workable data, though further tests can be run to see exactly how much of the variation is explained by age or location. In the location category, we see approximately 10 nodes above average all from France or USA. As such, we will ignore these metrics for the remainder of this analysis.</p>
+            <p class="bodypara">A final note in this section: the most contacted employee is employee 194. This employee works in the Admin department, and more surprisingly, sent no messages in the six month period we have data for. Given the department and the large amount of messages sent to 194, we would expect to see at least a few responses, which may prove to be another talking point for the HR department. If this is a common trend, we should encourage reasonable responses by employees to improve communication at an individual level.</p>
+            
+            <h3 class="sechead">Departmental Communication</h3>
+            <img src="../docs/dept_digraph.png" alt="department communication" class="image">
+            <p class="bodypara">Now that we are looking at six departments instead of 664, the communication graph is indeed much clearer. All of the employees and the messages they sent were aggregated in the dataframe, and after adding a column recording the department that the recipient of each message was in, we are able to track both inter- and intra-departmental communications (shown above). From the above graph, we see that most departments are in communication with each other, and that there is at least one way to get from any department to another. That is, no department is isolated. Note that the number of messages sent corresponds to the color of the line connecting the nodes. Despite this, there are three arrows that would ideally be present that are missing:</p>
+            <ol class="bodypara">
+                <li>Marketing to IT</li>
+                <li>Engineering to Marketing</li>
+                <li>Marketing to Marketing</li>
+            </ol>
+            <img src="../docs/comm_heatmat.png" alt="heatmap" class="image">
+            <p class="bodypara">Our previous findings are made more clear from the heatmap shown above. There cells with a 0 indicate no communication from the dept. on the left to the dept. on the bottom. The figure also shows more clearly which departments we can classify as most and least active. In order of activity, we have: Sales, Operations, Admin, IT, Engineering, and Marketing. On the lower end, IT and Engineering have about the same number of total communications, 118, while Marketing has only 65. This is definitely a problem, as any Marketing department should be in close contact with the other departments, and itself, to improve the chances that the Sales department is able to make sales. Additionally, IT and Engineering should likely be in better contact with each other.</p>
+            
+            <h3 class="sechead"> Conclusion </h3>
+            <p class="bodypara">We have looked at individual and departmental performances over the six month period throughout this analysis. From the findings, employees 128, 605, and 144 can be viewed as the most influential, as they are in the top five for total sent messages and number of unique contacts. Further, Sales sends more messages to each department than any other, so Sales is a safe bet for most influential department.</p>
+
+            <p class="bodypara">In order to boost collaboration company-wide, HR should focus its attention on IT, Engineering, and Marketing. As Marketing is the weakest performing department, and arguably the most traditionally important to sales, this would likely be the best starting point. Of course, we don't have information regarding projects going on during this time-frame, so we cannot use success as a metric for where to focus the most resources, which could improve the quality of analysis. On an individual note, while it may not be feasible to enforce, HR should encourage interpersonal communication and appropriate responses to messages, so that more than a small fraction of the employees can account for all of the communication.</p>
+
+            <h4 class="subhead"> Improving </h4>
+            <p class="bodypara" id="bottompara">This project was originally done 11/2022. If I had to go back and redo this, I would include actual statistical tests, look at the message sending trends over the course of the six months, and use better visualizations to exemplify the data. I may come back around to this project to improve it eventually, but for the time being I will be focusing on new projects; ones that I am more personally interested in, like the Indeed project.</p>
+        </div>
+
+        <footer>
+            <a href="#topbanner">Return to Top</a>
+        </footer>
+    </body>
+    </div>
+</html>

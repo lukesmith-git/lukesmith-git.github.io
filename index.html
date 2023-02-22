@@ -1,10 +1,124 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
+    
     <head>
-        Luke Smith
+        <title>
+           Luke Smith's Portfolio
+        </title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Luke Smith"> 
+        <link rel="stylesheet" href="css/indexstyle.css">
     </head>
+
+    <div class="site-container">
     <body>
-        <h1> test 1</h1>
-        <p> test p</p>
+        
+        <div class="banner" id="topbanner">
+            <!--<header style="background-color: aqua; text-align: center; border: 5px solid black;">-->
+                <!--<h1 style="background-color: antiquewhite; margin:5px; padding:5px;">Luke Smith's Portfolio</h1>-->
+            <p id="toptext">Data Science Portfolio</p>
+            <a class="currentpage" href="index.html">Home</a>
+            <a href="projects/projectpage.html">Projects</a>
+            <a href="otherpages/contact.html">Contact Me</a>
+                <!--hr-->
+        </div>
+        <!-- img src="source" alt="aternate txt" width=x height=y--> 
+        <!-- tag style="css_property:value"-->
+        
+        <div class="sidebar" id="leftbar">
+            <p id="leftTitle">&nbsp;&nbsp;&nbsp;&nbsp;Links:</p></br>
+            <a href="https://www.github.com/lukesmith-git/lukesmith-git.github.io" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;Source Code</a>
+            </br>
+            <a href="docs/Resume.pdf" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;My Resume</a>
+            </br>
+            <a href="docs/CV.pdf" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;My CV</a>
+            </br>
+            <a href="https://www.datacamp.com/certificate/DSA0012049565881" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;Certification</a>
+            </br>
+            <button class="dropbtn">&nbsp;&nbsp;&nbsp;Projects&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#x25B6;
+                <i class="fa fa-caret-down"></i>
+            </button> 
+            <div class="dropdowncontainer">
+                <a href="projects/Indeed.html">Indeed Scraping</a>
+                </br>
+                <a href="projects/Bike.html">Predicting Bike Ownership</a>
+                </br>
+                <a href="projects/Food.html">Food Poisoning Claims</a>
+                </br>
+                <a href="projects/Networking.html">Networking Analysis</a>
+            </div>
+        </div>
+        
+        <!--Make the button work-->
+        <script type="text/javascript">
+            var dropdown = document.getElementsByClassName("dropbtn");
+            var i;
+
+            for (i = 0; i < dropdown.length; i++) {
+                dropdown[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var dropdownContent = this.nextElementSibling;
+                    if (dropdownContent.style.display === "block") {
+                        dropdownContent.style.display = "none";
+                    } else {
+                        dropdownContent.style.display = "block";
+                    }
+                });
+            }
+        </script>
+
+        <div class="center">
+            <div class="name" id="description">
+                <h2 id="myname">Luke Smith</h2>
+                <p>A collection of projects completed and all the information you could ask for about me</p>
+            </div>
+            <hr>
+            <div class="article" id="maintext">
+                <h3 class="bodyhead" id="aboutme">Introduction:</h3>
+                <p class="bodypara" id="intpara">Hello! My name is Luke, and I am showcasing projects as I complete them here to fill out my portfolio. My goal, ultimately, is to use this to gain employment in Data Science.</p>
+                <h3 class="bodyhead" id="education">Education:</h3>
+                <p class="bodypara" id="edpara">Originally, I started college as a Psych major at SFASU in 2013. However, I soon realized chemistry was much more interesting, and so I studied chemistry until around 2015-2016, when I dropped out to focus on getting ready to be a father, which was a daunting task at 19 years old. Eventually, I was able to return to school (few years and +2 kids later), and I graduated Magna Cum Laude with my Bachelor's in mathematics from UT Tyler in 2019. During this time, I started learning Python (~2018) and fell in love with using it for mathematical purposes. The following year, I started grad school. While here I took a couple elected courses: Numerical Analysis and Numerical Linear Algebra, in which MatLab was used (forcibly) to look at algorithms including Newton's method, polynomial interpolation, and the fast fourier transform. At the time of creating this, I have completed the necessary requirements to acheive a Master's degree in Mathematics from UT Dallas: 36 hours of courses, all required courses taken, and a GPA above 3.0 in each semester. Unfortunately, the semester I was going to graduate (Fall 2022), I had to have surgery and the school seemed to lose interest in remaining in contact. So while I work that out, I do have official transcripts (and the medical records) to corroborate everything here.</p>
+                <h3 class="bodyhead" id="exp">Experience:</h3>
+                <p class="bodypara" id="exppara">While I do not have any direct professional experience as a Data Scientist, I have spent many hours working on the projects showcased here. Additionally, as a Mathematics student, I studied statistics (to a degree) and am familiar with many of the concepts that show up in Machine Learning and related topics. I have performed web scraping to get data, done multiple projects involving cleaning data with Pandas, brushed up on SQL (postgreSQL) as a database querying technique, and most of all have been able to stay motivated to continue doing these projects.</p>
+                <h3 class="bodyhead" id="skills">Skills:</h3>
+                <dl id="skillList">
+                    <dt class="skillitem"><b>Python:</b></dt>
+                    <dd class="skilldesc">pandas, numpy, scipy, sklearn, scrapy</dd>
+                    <dt class="skillitem"><b>SQL:</b></dt>
+                    <dd class="skilldesc">postgreSQL</dd>
+                    <dt class="skillitem"><b>Mathematics:</b></dt>
+                    <dd class="skilldesc">Calculus/optimization, Numerical Methods, Differential Equations, Combinatorics, Abstract Algebra</dd>
+                    <dt class="skillitem"><b>Statistics:</b></dt>
+                    <dd class="skilldesc">t-tests and their conditions, ANOVA, Hypothesis Testing, Bayesian statistics, normalization, A/B testing</dd>
+                    <dt class="skillitem"><b>Machine Learning:</b></dt>
+                    <dd class="skilldesc">mostly supervised learning models, logistic regression, cross validation, parameter tuning</dd>
+                    <dt class="skillitem"><b>Web Design:</b></dt>
+                    <dd class="skilldesc">Just enough html, css, and JavaScript to make this website and be able to scrape other sites</dd>
+                </dl>
+                <h3 class="bodyhead" id="goals"><b>Goals:</b></h3>
+                <p class="bodypara" id="goalpara">As I mentioned, the "short term" goal here is to gain employment in Data Science. In the long run, though, I would like to return to school to get my Ph.D. (not at UT Dallas), I plan to continue improving my skills and providing updates here, and I would eventually like to contribute something useful or meaningful, beyond regular work and projects, to the fields I work in.</p>
+            </div>
+        </div>
+
+        <!-- <div class="sidebar" id="rightbar">
+            <h4 id="rightTitle">Links</h4>
+            <ul id="linklist">
+
+            </ul>
+        </div> -->
+
+        <footer>
+            <div class="banner" id="footer">
+                <a>Check out these links:</a>
+                <a href="https://www.github.com/lukesmith-git" target="_blank">my github</a>
+                <a href="https://www.linkedin.com/in/luke-smith-01096725a" target="_blank">LinkedIn</a>
+                <a href="https://app.datacamp.com/profile/lukemaster1999" target="_blank">DataCamp Profile</a>
+                <p class="footpara" id="profemail">lukesmithworkandstuff@gmail.com</p>
+                <p class="footpara" id="location">Located near Dallas, TX</p>
+                <p class="footpara">More info:</p>
+            </div>
+        </footer>
     </body>
+    </div>
 </html>

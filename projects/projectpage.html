@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    
+    <head>
+        <title>
+           Projects Overview
+        </title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Luke Smith"> 
+        <link rel="stylesheet" href="../css/projectstyle.css">
+    </head>
+    
+    <div class="site-container">
+    <body>
+        <div class="banner" id="topbanner">
+            <!--<header style="background-color: aqua; text-align: center; border: 5px solid black;">-->
+                <!--<h1 style="background-color: antiquewhite; margin:5px; padding:5px;">Luke Smith's Portfolio</h1>-->
+            <p id="toptext">Data Science Portfolio</p>
+            <a href="../index.html">Home</a>
+            <a class="currentpage" href="projectpage.html">Projects</a>
+            <a href="../otherpages/contact.html">Contact Me</a>
+                <!--hr-->
+        </div>
+        <!-- img src="source" alt="aternate txt" width=x height=y--> 
+        <!-- tag style="css_property:value"-->
+        
+        <div class="sidebar" id="leftbar">
+            <p id="leftTitle">&nbsp;&nbsp;&nbsp;&nbsp;Links:</p></br>
+            <a href="https://www.github.com/lukesmith-git/lukesmith-git.github.io" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;Source Code</a>
+            </br>
+            <a href="../docs/Resume.pdf" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;My Resume</a>
+            </br>
+            <a href="../docs/CV.pdf" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;My CV</a>
+            </br>
+            <a href="https://www.datacamp.com/certificate/DSA0012049565881" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;Certification</a>
+            </br>
+            <button class="dropbtn">&nbsp;&nbsp;&nbsp;Projects&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#x25B6;
+                <i class="fa fa-caret-down"></i>
+            </button> 
+            <div class="dropdowncontainer">
+                <a href="Indeed.html">Indeed Scraping</a>
+                </br>
+                <a href="Bike.html">Predicting Bike Ownership</a>
+                </br>
+                <a href="Food.html">Food Poisoning Claims</a>
+                </br>
+                <a href="Networking.html">Networking Analysis</a>
+            </div>
+        </div>
+        
+        <!--Make the button work-->
+        <script type="text/javascript">
+            var dropdown = document.getElementsByClassName("dropbtn");
+            var i;
+
+            for (i = 0; i < dropdown.length; i++) {
+                dropdown[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var dropdownContent = this.nextElementSibling;
+                    if (dropdownContent.style.display === "block") {
+                        dropdownContent.style.display = "none";
+                    } else {
+                        dropdownContent.style.display = "block";
+                    }
+                });
+            }
+        </script>
+        
+        <div class="center">
+            <div class="name" id="description">
+                <h2 id="myname">Projects:</h2>
+                <p>The following are current projects I've finished and a short description.</p>
+            </div>
+            <hr>
+            <div class="article" id="maintext">
+                <h3 class="bodyhead" id="proj1"><a href="Indeed.html">Indeed:</a></h3>
+                <p class="bodypara" id="p1para">I scraped Indeed using scrapy and scrape-ops to get information for Data Science and Data Analyst jobs. I looked at salaries, age of postings, and the programming languages required.</p>
+                <h3 class="bodyhead" id="proj3"><a href="Bike.html">Predicting Bike Ownership:</a></h3>
+                <p class="bodypara" id="p3para">This was for my Data Science Certification. I was given data from reviews (rated 1-5) of several models of bikes and whether the reviewer actually owned the bike. I used this information to build a supervised learning model to predict whether a reviewer owned a bike based on the scores given on the review.</p>
+                <h3 class="bodyhead" id="proj4"><a href="Food.html"> Food Poisoning Claims:</a></h3>
+                <p class="bodypara" id="p4para">This was for my Data Analyst Certification. I was given a dataset regarding food poisoning claims in four regions of Brazil, the amount and length of the claim, how much was paid, etc. I was tasked with cleaning the data, dealing with the missing values, and visualizing and reporting on the data grouped by location. </p>
+                <h3 class="bodyhead" id="goals"><a href="Networking.html">Networking Analysis:</a></h3>
+                <p class="bodypara" id="p5para">This was a DataCamp competition. I was given a dataset regarding communications sent and received by employees of a certain company, and a dataset relating the employees department id to the department name. I was tasked with finding the most and least active employees/departments, and recommending which departments the company should focus on to improve overall communication.</p>
+            </div>
+        </div>
+
+        <footer>
+            <div class="banner" id="footer">
+                <a>Check out these links:</a>
+                <a href="https://www.github.com/lukesmith-git" target="_blank">my github</a>
+                <a href="https://www.linkedin.com/in/luke-smith-01096725a" target="_blank">LinkedIn</a>
+                <a href="https://app.datacamp.com/profile/lukemaster1999" target="_blank">DataCamp Profile</a>
+                <p class="footpara" id="profemail">lukesmithworkandstuff@gmail.com</p>
+                <p class="footpara" id="location">Located near Dallas, TX</p>
+                <p class="footpara">More info:</p>
+            </div>
+    </footer>
+    </body>
+    </div>
+</html>

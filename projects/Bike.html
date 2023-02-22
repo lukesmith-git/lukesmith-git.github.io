@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    
+    <head>
+        <title>
+           Luke Smith's Portfolio
+        </title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Luke Smith"> 
+        <link rel="stylesheet" href="../css/project-mdstyle.css">
+    </head>
+
+    <div class="site-container">
+    <body>
+        
+        <div class="banner" id="topbanner">
+            <!--<header style="background-color: aqua; text-align: center; border: 5px solid black;">-->
+                <!--<h1 style="background-color: antiquewhite; margin:5px; padding:5px;">Luke Smith's Portfolio</h1>-->
+            <p id="toptext">Data Science Portfolio</p>
+            <a href="../index.html">Home</a>
+            <a class="currentpage" href="projectpage.html">Projects</a>
+            <a href="../otherpages/contact.html">Contact Me</a>
+                <!--hr-->
+        </div>
+        <!-- img src="source" alt="aternate txt" width=x height=y--> 
+        <!-- tag style="css_property:value"-->
+        
+        <div class="sidebar" id="leftbar">
+            <p id="leftTitle">&nbsp;&nbsp;&nbsp;&nbsp;Links:</p></br>
+            <a href="https://github.com/lukesmith-git/Moped-Ownership-Project/tree/main" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;Source Code</a>
+            </br>
+            <a href="../docs/Resume.pdf" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;My Resume</a>
+            </br>
+            <a href="../docs/CV.pdf" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;My CV</a>
+            </br>
+            <a href="https://www.datacamp.com/certificate/DSA0012049565881" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;Certification</a>
+            </br>
+            <button class="dropbtn">&nbsp;&nbsp;&nbsp;Projects&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#x25B6;
+                <i class="fa fa-caret-down"></i>
+            </button> 
+            <div class="dropdowncontainer">
+                <a href="Indeed.html">Indeed Scraping</a>
+                </br>
+                <a class="currentpage" href="Bike.html">Predicting Bike Ownership</a>
+                </br>
+                <a href="Food.html">Food Poisoning Claims</a>
+                </br>
+                <a href="Networking.html">Networking Analysis</a>
+            </div>
+        </div>
+        
+        <!--Make the button work-->
+        <script type="text/javascript">
+            var dropdown = document.getElementsByClassName("dropbtn");
+            var i;
+
+            for (i = 0; i < dropdown.length; i++) {
+                dropdown[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var dropdownContent = this.nextElementSibling;
+                    if (dropdownContent.style.display === "block") {
+                        dropdownContent.style.display = "none";
+                    } else {
+                        dropdownContent.style.display = "block";
+                    }
+                });
+            }
+        </script>
+
+        <div class="center">
+            <h2 class="projtitle"> Predicting Ownership of a Moped Based on Reviews </h2>
+            </hr>
+            <h3 class="sechead"> Background </h3>
+            <p class="bodypara">This project was presented to me for certification by DataCamp. The data and original ipynb can be found by following the source code link on the left nav.</p>
+            <p class="bodypara">EMO is a manufacturer of motorcycles. The company successfully launched its first electric moped in India in 2019. The product team knows how valuable owner reviews are in making improvements to their mopeds. Unfortunately they often get reviews from people who never owned the moped. They don't want to consider this feedback, so would like to find a way to identify reviews from these people. They have obtained data from other mopeds, where they know if the reviewer owned the moped or not. They think this is equivalent to their own reviews. </p>
+            <p class="bodypara">Your manager has asked you to answer the following: Can you predict which reviews come from people who have never owned the moped before? </p>
+            
+            <h4 class="subhead"> The Dataset </h4>
+            <p class="bodypara">The data has been formatted in an excel document following the layout in the following table.</p>
+            <table>
+                <tr>
+                    <th>Column Name</th>
+                    <th>Criteria</th>
+                </tr>
+                <tr>
+                   <td>Used it for</td>
+                   <td>Character, the purpose of the electric moped for the user, one of "Commuting", "Leisure".</td> 
+                </tr>
+                <tr>
+                    <td>Owned for</td>
+                    <td>Character, duration of ownership of vehicle, one of "&lt;= 6 months", "&gt; 6 months", "Never Owned".</td>                
+                </tr>
+                <tr>
+                    <td>Model name</td>
+                    <td>Character, the name of the electric moped</td>
+                </tr>
+                <tr>
+                    <td>Visual Appeal</td>
+                    <td>Numeric, visual appeal rating (on a 5 point scale)</td>
+                </tr>
+                <tr>
+                    <td>Reliability</td>
+                    <td>Numeric, reliability rating (on a 5 point scale)</td>
+                </tr>
+                <tr>
+                    <td>Extra Feature</td>
+                    <td>Numeric, extra feature rating (on a 5 point scale)</td>
+                </tr>
+                <tr>
+                    <td>Comfort</td>
+                    <td>Numeric, comfort rating (on a 5 point scale)</td>
+                </tr>
+                <tr>
+                    <td>Maintenance cost</td>
+                    <td>Numeric, maintenance cost rating (on a 5 point scale)</td>
+                </tr>
+                <tr>
+                    <td>Value for money</td>
+                    <td>Numeric, value for money rating (on a 5 point scale)</td>
+                </tr>
+            </table>
+
+            <h3 class="sechead"> Data Validation </h3>
+            <p class="bodypara">Upon examination, the data was found to have four columns with null/missing values: <b>Extra Features, Comfort, Maintenance cost, Value for Money</b>. The largest amount of missing values came from Extra Features and Maintenance cost at 530 and 537 respectively, accounting for approximately 75% of the data in those columns.</p>
+
+            <h4 class="subhead"> Changes </h4>
+            <p class="bodypara">The missing values from above were replaced with 0's in orer to make the dataset viable for further analysis. Further, as we look to ultimately predict whether a reviewer has owned a moped, the column "owned" has been added to the data set with True or False values corresponding to the entry in "Owned for". The "null_sum" and "percent_total" columns have been added as possible points of interest, where null_sum represents the sum of the columns for which missing values were replaced and percent_total is the sum of each rated column out of a possible total of 30.</p>
+
+            <h3 class="sechead"> Exploratory Analysis </h3>
+            <p class="bodypara">A sample overview of the data is given in the histograms Histogram of Total Score % and Histogrm of Reliability Scores. Here we see that most of the reviews were at one extreme or the other (given a rating of 1, 4, or 5). This may hold for each of the other features, seeing as the percent total is mostly under 50%. It is of interest to look at how ownership affects these scores.</p>
+            <img src="../docs/score_pct_hist.png" alt="hist1" class="image">
+            <img src="../docs/score_hist.png" alt="hist2" class="image">
+            <p class="bodypara">The data showed a mostly positive correlation between most ratings, for example, a higher score on Reliability generally indicated a higher score on Visual Appeal. Interestingly, in almost all cases, the ratings by non-owners were higher on average than those by owners (explored in the next subsection). After this finding, the data was grouped by each of the "owned", "Used it for", and "Model Name" columns to look for further correlations. In the figure % Ownership by % Model, the ownership percentage by model was viewed as a blue line against the percentage of each type of model found in the data (red dots). Strong dips in ownership percentage did not correspond to surges or dips in the percentage of model, so this data was found to have no strong impact. That is, the review of an Ampere Magnus EX was about as likely to be from an actual owner as a review for a Hero Electric Optima. The "Model Name" column was dropped from the dataframe.</p>
+            <img src="../docs/pct_ownership_by_model.png" alt="ownership by model" class="image">
+            <p class="bodypara">The data was further grouped by owbership status and by usage type, and the results will be explored more in the following sections. For now, looking at the correlation heatmap reveals another interesting point about this data.</p>
+
+            <h4 class="subhead"> A Closer Look</h4>
+            <img src="../docs/corr_heatmap.png" alt="corr heatmap" class="image">
+            <p class="bodypara">From the above, there are three findings to take note of (values listed are between -1 and 1, and values closer to either extreme indicate a stronger linear relationship).</p>
+            <ol class="bodylist">
+                <li>The positive correlation between review question responses was found to hold in general, which can be expected.</li>
+                <li>Ownership appears to only have weak linear correlation with each of the responses, which we will look at further.</li>
+                <li>The blank squares indicate missing values (or that the fields are mutually exclusive), so it would seem that respondants may have received different questionnaires.</li>
+            </ol>
+            <p class="bodypara">On the third point, the data was split into three tables, one where the "Extra Features" and "Maintenance cost" columns both had missing values, one where "Comfort" and "Value for Money" columns both had missing values, and a third that consisted of the remaining rows not caught by the first two. This split the data into 189, 512, and 12 entries, respectively. Since all four of the mentioned columns were empty in the third dataframe, and given the low number of such entries, it was found most likely that these respondants just did not provide an answer for these values. However, given the large number of mutually exclusive entries in the first two tables, it would be safe to assume that respondants were given one of two different questionnaires. This changed the total possible points of a review from 30 to 20, and updates to the "percent_total" column were made.</p>
+            <img src="../docs/avg_rating_numeric.png" alt="avg rating" class="image">
+            <img src="../docs/boxplot_pct_score_by_ownership.png" alt="boxplot" class="image">
+            <p class="bodypara">Looking at the first figure above solidifies the previous assertion that on average, non-owners provided higher review ratings than owners. Not only this, but the reviews were higher by non-owners in each individual category! In the second figure, we are looking at the median and first and third quartiles of ratings instead of the average. And again, it is found that non-owners provide higher ratings (usually) than owners, as their box and median line is not only higher, but also more vertically condensed. While this may seem surprising at first, we can take a moment to go on a short tangent and think of this in a different way. A person may rate a game low, even before its release, due to release trailers, previous game entry bias, or more divisive factors incorporated into the game. However, this mentality is more geared towards luxury or entertainment. Many people may view vehicles as a luxury, a status identifier, or even as family (if you have ever had that "ol reliable" car that's lasted years). But just as a homeowner would be more scrutinous of the work a plumber does at their house, so too would a person who relies on this vehicle for day to day transportation be more likely to scrutinize the things like maintenance cost and comfort, instead of a friend who borrows it for a day and only has to fill up the tank. That is not to say that this is the only reason for the disparity in reviews, but simply a way of looking at it so that it is not as surprising.</p>
+            <p class="bodypara">Back to looking solely at the data. The last grouping examined was the data by usage type, Commuting or Leisure, in the figure <i>Values Based on Usage Type</i>. Regarding the individual questions, we see a clear difference in "Visual Appeal", "Reliability", and "Comfort" between the two, with Leisure drivers rating higher on average. Perhaps they purchased nicer models, but since the model did not have much impact on ownership, this was not explored. More to the point of the purpose of this analysis, we see that Commuter reviews were much more likely to be from owners, with commuter reviews having an ownership percentge around 85%, and leisure reviews being around 66%.</p>
+            <img src="../docs/values_by_usage.png" alt="barplot" class="image">
+
+            <h4 class="subhead"> Changes to the Data </h4>
+            <p class="bodypara">Since we will be working under the assumption that two different question sets were given to reviewers, the null_sum column no longer provided useful information, and was dropped. Further, the percent totals were updated to be out of 20 points instead of 30. As stated before, the column containing the models of mopeds was dropped, as it did not have a significant impact. To prepare the data for modeling, the "Used it for" column was changed to have a 0 representing Commute and 1 representing Leisure, and the "owned" column was changed from True and False to 1 and 0. Further, since there were two different question sets, the column "Questionnaire" has been added, which implicitly encodes which of the two columns were null, keeping information loss to a minimum as we replace 0's with the rounded mean by ownership in each of these columns.</p>
+
+            <h3 class="sechead">The ML Model</h3>
+            
+            <h4 class="subhead">Model Type</h4>
+            <p class="bodypara">The question posed is to predict if a review came from a non-owner. Since the data given provides whether or not the moped was owned (the output we are looking for), we are looking at a supervised machine learning problem. The problem is a boolean (True or False) question, so the baseline model chosen is a <b>logistic regression</b> model. This model is used in contexts such as determining whether a tumor is malignant or benign based on some data, so it seems like a good place to start. As a comparison model, a <b>random forest</b> will be used. In addition to being a suitable model for this problem, it is my personal favorite supervised learning model. A single tree may have worked as well, in which the model looks at information, poses a condition, and moves forward based on whether the data satisfied the condition or not until it reaches a conclusion; much like a flowchart! The random forest will do this, but with many trees. The models are obtained from the sklearn python package, along with preprocessing (MinMaxScaler) and data separation tool train_test_split.</p>
+            
+            <h4 class="subhead"> Model Training</h4>
+            <p class="bodypara">First the data was manually split to select the predictor and target variables, and our numeric variables were scaled using the MinMaxScaler. Once this was done, the data was split into two groups: (X_train, y_train) and (X_test, y_test) using the train_test_split function with a test size of 30%. Then both model types were initialized and fit to the training data. From here, the models were used to predict outputs from the X_test variable, and scored against the true y_test values. The confusion matrices for both models follow.</p>
+            <img src="../docs/lr_conf_mat.png" alt="lr conf matrix" class="image">
+            <img src="../docs/rf_conf_matrix.png" alt="rf conf matrix" class="image">
+            
+            <h4 class="subhead"> Model Evaluation</h4>
+            <p class="bodypara">To break down the confusion matrices, first note that true and false in this case correspond to whether a review was written by an owner (true) or non-owner (false). The first box is the number of entries where the model predicted false and the actual value was false. To the right we have predicted true, actually false; below this is predicted and actually true; and the bottom left is predicted false but is true. In that order these are called True Negative (TN), False Positive (FP), True Positive (TP), and False Negative (FN). Based on the two confusion matrices, both models performed pretty well.</p>
+            <p class="bodypara">We are looking to predict if a review has been written by a non-owner, so we would like to maximize True Negatives and minimize False Positives. Thus we are looking at the **recall** of the models. The specific value in this case is given by TN/(TN+FP). This was computed to be 85.36% for the Logistic Regression model and 97.56% for the Random Forest model. This means that in the Random Forest model, we expect to correctly identify a non-owner 97.56% of the time. Of course, we should not shirk the precision of a model either, and here we see precision scores of 96.7% and 99.5% for the models, respectively. This is simply a proportion of how many items the models predicted correctly. In both regards, the Random Forest model has outperformed the Logistic Regression model.</p>
+
+            <h3 class="sechead"> Conclusion </h3>
+            <p class="bodypara" id="bottompara">Given the relative performances of the model, it is comfortable to say that we are able to predict which reviews are coming from non-owners. Assuming the data provided matches the data that EMO will be receiving, it is recommended that the Random Forest is used to detect reviews by non-owners.</p>
+        </div>
+
+        <footer>
+            <a href="#topbanner">Return to Top</a>
+        </footer>
+    </body>
+    </div>
+</html>

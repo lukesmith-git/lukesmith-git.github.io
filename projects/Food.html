@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    
+    <head>
+        <title>
+           Luke Smith's Portfolio
+        </title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Luke Smith"> 
+        <link rel="stylesheet" href="../css/project-mdstyle.css">
+    </head>
+
+    <div class="site-container">
+    <body>
+        
+        <div class="banner" id="topbanner">
+            <!--<header style="background-color: aqua; text-align: center; border: 5px solid black;">-->
+                <!--<h1 style="background-color: antiquewhite; margin:5px; padding:5px;">Luke Smith's Portfolio</h1>-->
+            <p id="toptext">Data Science Portfolio</p>
+            <a href="../index.html">Home</a>
+            <a class="currentpage" href="projectpage.html">Projects</a>
+            <a href="../otherpages/contact.html">Contact Me</a>
+                <!--hr-->
+        </div>
+        <!-- img src="source" alt="aternate txt" width=x height=y--> 
+        <!-- tag style="css_property:value"-->
+        
+        <div class="sidebar" id="leftbar">
+            <p id="leftTitle">&nbsp;&nbsp;&nbsp;&nbsp;Links:</p></br>
+            <a href="https://github.com/lukesmith-git/Food-Poisoning-Claims/blob/main/Food-poisoning/workspace/notebook.ipynb" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;Source Code</a>
+            </br>
+            <a href="../docs/Resume.pdf" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;My Resume</a>
+            </br>
+            <a href="../docs/CV.pdf" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;My CV</a>
+            </br>
+            <a href="https://www.datacamp.com/certificate/DSA0012049565881" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;Certification</a>
+            </br>
+            <button class="dropbtn">&nbsp;&nbsp;&nbsp;Projects&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#x25B6;
+                <i class="fa fa-caret-down"></i>
+            </button> 
+            <div class="dropdowncontainer">
+                <a href="Indeed.html">Indeed Scraping</a>
+                </br>
+                <a href="Bike.html">Predicting Bike Ownership</a>
+                </br>
+                <a class="currentpage" href="Food.html">Food Poisoning Claims</a>
+                </br>
+                <a href="Networking.html">Networking Analysis</a>
+            </div>
+        </div>
+        
+        <!--Make the button work-->
+        <script type="text/javascript">
+            var dropdown = document.getElementsByClassName("dropbtn");
+            var i;
+
+            for (i = 0; i < dropdown.length; i++) {
+                dropdown[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var dropdownContent = this.nextElementSibling;
+                    if (dropdownContent.style.display === "block") {
+                        dropdownContent.style.display = "none";
+                    } else {
+                        dropdownContent.style.display = "block";
+                    }
+                });
+            }
+        </script>
+
+        <div class="center">
+            <h2 class="projtitle"> Analyzing Food Poisoning Claims </h2>
+            </hr>
+            <h3 class="sechead"> Background </h3>
+            <p class="bodypara">This project was presented to me for certification in data analysis by DataCamp. The data and original ipynb can be found by following the source code link on the left nav.</p>
+            <p class="bodypara">Viviendo is a fast food chain in Brazil with over 200 outlets. Customers often claim compensation from the company for food poisoning. The legal team processes these claims, and has offices in four locations. They want to omprove how long it takes to reply to customers and close claims. The head of the legal department wants a report on how each location differs in the time it takes to close claims.</p>
+            <h4 class="subhead"> The Data </h4>
+            <p class="bodypara">The data has been formatted in an excel document following the layout in the following table. Not all data currently matches what is listed in the description.</p>
+            <table>
+                <tr>
+                    <th>Column Name</th>
+                    <th>Criteria</th>
+                </tr>
+                <tr>
+                   <td>claim_id</td>
+                   <td>Nominal. The unique identifier of the claim. Missing values are not possible.</td> 
+                </tr>
+                <tr>
+                    <td>time_to_close</td>
+                    <td>Discrete. The number of days to close the claim, can be any positive value.</td>                
+                </tr>
+                <tr>
+                    <td>claim_amount</td>
+                    <td>Continuous. The initial claim requested in the currency of Brazil, rounded to 2 decimal places.</td>
+                </tr>
+                <tr>
+                    <td>amount_paid</td>
+                    <td>Continuous. Final amount paid in the currency of Brazil, rounded to 2 decimal places.</td>
+                </tr>
+                <tr>
+                    <td>location</td>
+                    <td>Nominal. Location of the claim. One of: "Recife", "Sao Luis", "Fortaleza", or "Natal".</td>
+                </tr>
+                <tr>
+                    <td>individuals_on_claim</td>
+                    <td>Discrete. Number of individuals on this claim, minimum of 1 person.</td>
+                </tr>
+                <tr>
+                    <td>linked_cases</td>
+                    <td>Nominal. Wheter this claim is linked to other cases; either true or false.</td>
+                </tr>
+                <tr>
+                    <td>cause</td>
+                    <td>Nominal. Cause of the food poisoning. One of: "vegetable", "meat", or "unknown".</td>
+                </tr>
+            </table>
+
+            <h3 class="sechead"> Cleaning Data </h3>
+            <p class="bodypara">The dataset provided was examined and cleansed to match the desired form found in "Criteria" in the table above. The methods for each column are as follows.</p>
+            
+            <h4 class="subhead">unchanged columns</h4>
+            <p class="bodypara">The columns: "claim_id", "time_to_close", "location", and "individuals_on_claim" all required no changes. Appropriate steps were taken for each to ensure that the entries of the column matched what they should be based off of the description.</p>
+            
+            <h4 class="subhead">claim_amount</h4>
+            <p class="bodypara">This column had no missing data. However, the values were all entered as strings of the form "R$ [amount]" to denote the local currency. The beginning "R$ " was stripped from the column, amounts were changed to be floats, and pandas was formatted to force 2 decimal points to show. The last part of this was necessary for entries such as "123.4" to show up as "123.40", as specified in the table.</p>
+            
+            <h4 class="subhead">amount_paid</h4>
+            <p class="bodypara">The column had 36 missing values, which were replaced with the median of the column: 20,105.70. After filling the null values, the column matches the description.</p>
+            
+            <h4 class="subhead">linked_cases</h4>
+            <p class="bodypara">This column had 26 missing values, all of which were replaced with "False". After filling the null values, every entry in the column was boolean, so no further changes were needed.</p>
+            
+            <h4 class="subhead">cause</h4>
+            <p class="bodypara">This column had no missing values, but did have unwanted entries. The strings "VEGETABLES" and " Meat" showed up a combined total of 30 times. These were changed to "vegetable" and "meat", respectively, and no further modifications were necessary.</p>
+
+            <h3 class="sechead"> Claims by Location </h3>
+            <p class="bodypara">As shown in the following barplot, most claims (885 of 2000) came from Recife. Further, as we can see in the pie chart following, the observations are balanced between Fortaleza and Natal. However, Sao Luis has a significantly higher number of claims, and Recife an even more substantial amount.</p>
+            <img src="../docs/loc_barplot.png" alt="location barplot" class="image">
+            <img src="../docs/loc_pieplot.png" alt="piechart" class="image">
+
+            <h3 class="sechead">Distribution of Time to Close</h3>
+            <p class="bodypara">When looking at all claims, the distribution of time to close is right skewed. More explicitly, the minimum is 76, maximum is 518, with the average being approximately 186. Of the 2000 claims, 1218 of them have a time to close that is lower than the average, and the density of claims peaks around 177. All of this is visualized in the following graph.</p>
+            <img src="../docs/close_histkde.png" alt="histogram of time to close" class="image">
+
+            <p class="bodypara">As is shown above, the density peaks (the top of the red line) to the left of the mean, and trails off to the right. Since the graph looks like a normal distribution, but moved to the left, we would call this a right-skewed distribution.</p>
+
+            <h3 class="sechead">Time to Close by Location</h3>
+            <p class="bodypara">Although there was a relatively large disparity in the number of claims by location (shown previously), visualization and analysis of the time to close (TTC) variable grouped by location appears to be much more even across each location. To demonstrate this, one graph has been created showing the average TTC by location and another showing the first and third quartiles and median of TTC by location.</p>
+            <img src="../docs/avg_loc_close.png" alt="barplot close time" class="image">
+            <img src="../docs/loc_close_box.png" alt="boxplot close time" class="image">
+            <p class="bodypara">As it is shown, the averages are all very close to the same value. Further, even the boxplot shows a striking similarity in TTC for each location, though the areas with the higher amount of observations account for a majority of the outliers (empty circles). Actual values for each are provided below.</p>
+            <table>
+                <tr>
+                    <th>Location</th>
+                    <th>Mean</th>
+                    <th><i>Q</i><sub>1</sub></th>
+                    <th>Median</th>
+                    <th><i>Q</i><sub>3</sub></th>
+                </tr>
+                <tr>
+                    <td>Fortaleza</td>
+                    <td>185.31</td>
+                    <td>157.00</td>
+                    <td>180.00</td>
+                    <td>205.50</td>
+                </tr>
+                <tr>
+                    <td>Natal</td>
+                    <td>185.93</td>
+                    <td>157.00</td>
+                    <td>179.00</td>
+                    <td>205.50</td>
+                </tr>
+                <tr>
+                    <td>Recife</td>
+                    <td>184.61</td>
+                    <td>157.00</td>
+                    <td>178.00</td>
+                    <td>203.00</td>
+                </tr>
+                <tr>
+                    <td>Sao Luis</td>
+                    <td>187.17</td>
+                    <td>157.00</td>
+                    <td>179.00</td>
+                    <td>205.00</td>
+                </tr>
+            </table>
+
+            <p class="bodypara">Following up on the visualization and summary statistic calculations, a one-way ANOVA test was run. This confirmed what can be assumed from the graphs: there is no statistically significant difference in mean TTC between any locations (<i>F(3, 1996)</i>=<i>.30</i>, <i>p</i>=<i>0.82</i>).</p>
+
+            <h3 class="subhead">Conclusion</h4>
+            <p class="bodypara" id="bottompara">Shown throughout the analysis portion and ultimately in the ANOVA test, we can safely conclude that there is no significant relationship between the location of a claim and the time to close that claim. On the one hand, this does show that despite a larger or smaller amount of claims, each location operates approximately the same, so the business is consistent. On the other hand, this would also imply that improving TTC overall can't be done by just working on one location. If the average (~186) is too high, then work will need to be done across the board to improve TTC.</p>
+        </div>
+
+        <footer>
+            <a href="#topbanner">Return to Top</a>
+        </footer>
+    </body>
+    </div>
+</html>

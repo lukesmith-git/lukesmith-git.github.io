@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    
+    <head>
+        <title>
+           Luke Smith's Portfolio
+        </title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Luke Smith"> 
+        <link rel="stylesheet" href="../css/project-mdstyle.css">
+    </head>
+
+    <div class="site-container">
+    <body>
+        
+        <div class="banner" id="topbanner">
+            <!--<header style="background-color: aqua; text-align: center; border: 5px solid black;">-->
+                <!--<h1 style="background-color: antiquewhite; margin:5px; padding:5px;">Luke Smith's Portfolio</h1>-->
+            <p id="toptext">Data Science Portfolio</p>
+            <a href="../index.html">Home</a>
+            <a class="currentpage" href="projectpage.html">Projects</a>
+            <a href="../otherpages/contact.html">Contact Me</a>
+                <!--hr-->
+        </div>
+        <!-- img src="source" alt="aternate txt" width=x height=y--> 
+        <!-- tag style="css_property:value"-->
+        
+        <div class="sidebar" id="leftbar">
+            <p id="leftTitle">&nbsp;&nbsp;&nbsp;&nbsp;Links:</p></br>
+            <a href="https://github.com/lukesmith-git/Indeed-Scraping" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;Source Code</a>
+            </br>
+            <a href="../docs/Resume.pdf" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;My Resume</a>
+            </br>
+            <a href="../docs/CV.pdf" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;My CV</a>
+            </br>
+            <a href="https://www.datacamp.com/certificate/DSA0012049565881" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;Certification</a>
+            </br>
+            <button class="dropbtn">&nbsp;&nbsp;&nbsp;Projects&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#x25B6;
+                <i class="fa fa-caret-down"></i>
+            </button> 
+            <div class="dropdowncontainer">
+                <a class="currentpage" href="Indeed.html">Indeed Scraping</a>
+                </br>
+                <a href="Bike.html">Predicting Bike Ownership</a>
+                </br>
+                <a href="Food.html">Food Poisoning Claims</a>
+                </br>
+                <a href="Networking.html">Networking Analysis</a>
+            </div>
+        </div>
+        
+        <!--Make the button work-->
+        <script type="text/javascript">
+            var dropdown = document.getElementsByClassName("dropbtn");
+            var i;
+
+            for (i = 0; i < dropdown.length; i++) {
+                dropdown[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var dropdownContent = this.nextElementSibling;
+                    if (dropdownContent.style.display === "block") {
+                        dropdownContent.style.display = "none";
+                    } else {
+                        dropdownContent.style.display = "block";
+                    }
+                });
+            }
+        </script>
+
+        <div class="center">
+            <h2 class="projtitle"> An Analysis of Indeed Jobs on 2/13/23 </h2>
+            </hr>
+            <h3 class="sechead"> Background </h3>
+            <p class="bodypara">In this project I look to gather information and make insights from jobs listed on Indeed. To do this, I scraped the website using a scrapy Spider. The initial scrapes were performed on 2/13/23 using the keywords "Data Analyst" and "Data Scientist" and the work here only uses this scrape. The motivation behind this is a long series of applications met with no response. Knowing the information about jobs I have already applied for and gathering information straight from Indeed will guide my decision on where to apply. For reference, according to <a href="https://www.payscale.com">payscale.com</a>, the average salaries for a Data Analyst and Data Scientist are $28.85-$36.06/hr and $33.65-$65.87/hr, respectively. All files/saved functions can be found in this project's <a href="https://github.com/lukesmith-git/Indeed-Scraping">github page</a>.</p>
+
+            <h3 class="sechead"> Scraping </h3>
+            <p class="bodypara">The spider used for scraping is modified from the publicly available template found on ian-kellins github <a href="https://github.com/python-scrapy-playbook/indeed-python-scrapy-scraper/blob/master/README.md">here</a> and I have moved the modified files from my personal VS Code to the folder job_listings on github. Essentially, the spider starts by searching Indeed using provided keywords and locations then selects each job card and scrapes the corresponding job for information. This requires two parse functions: the first to deal with the search results page, find the job cards, and move to the next search page; the second to get the information from the job page itself.</p>
+
+            <h4 class="subhead"> The Process </h4>
+            <p class="bodypara">On a first run, the template spider returned the meta-data from the search results pages but was returning null values for every entry from the job page except the raw job description. As the template didn't provide all of the information I wanted to gather, I had to scour the pages' source codes to find where the problem was and where the additional data was stored. After some searching, it turned out the template was one level outside of the json object that stored the Job Title and Company Name. Luckily there was additional data for Minimum Salary, Maximum Salary, and Salary Type (yearly/hourly) to be found here, so these additions were easy to add. From there, I also wanted to grab the age of the job posting, which was found in the first "\_initialData" object nested in the "jobMetadataFooterModel" object with the key "age". This gave me all of the data that I wanted to scrape, so after a short test scrape (so as not to waste too many free scrape-ops credits), a full scrape was done for both "Data Analyst" and "Data Scientist" and saved as json files (data_analyst_results.json and data_scientist_results.json).</p>
+
+            <h3 class="sechead"> Cleansing the Data </h3>
+            <p class="bodypara">Now that I had the data stored nicely, I moved from VS Code to a Jupyter Notebook (final notebook available with the source code) to work with the data in real time. I loaded both files into a pandas DataFrame and started working with the analyst DataFrame. On first inspection, many entries had missing salary information (not too uncommon when dealing with Indeed's postings), so this is the first thing I wanted to address.</p>
+
+            <h4 class="subhead"> A Clean Salary </h4>
+            <p class="bodypara">To fix this problem, there were a few options: fill the min and max salaries with the information obtained from payscale, fill them with the averages for the columns currently present, or try to fill them with information from the job description. Of course, more accurate information is always good, so the third option was chosen. As the job description had been stored as html text, this was most easily done by using the re package to search for strings matching a regular expression. However, many jobs will add benefits or examples of other companies as monetary amounts which can lead to confusion, so some sanity checks were necessary to be implemented. To do this, I looked for a value matching $xxxxx, and would pull out the min and max values from the resulting list. If the max was unreasonably low (say $15 or lower) it would not make sense as any kind of salary. Similar edge cases were handled and the data was filled in.</p>
+
+            <p class="bodypara">Since this could not handle every job given, I opted to finish this by filling in the remaining null values with the average of the min and max columns, respectively. Then, to be able to actually work with the data, I converted all of the salaries to hourly rates. Hourly was chosen instead of yearly as this is what I prefer to look at when I go through job listings, but the reverse could easily be done. Following these adjustments, the min and max salaries and salary types all matched the desired form.</p>
+
+            <h4 class="subhead"> A New Age </h4>
+            <p class="bodypara">There were no missing values for the post_age column, but Indeed stores the age using days as a unit of measurement, so these values weren't immediately ready to be worked with. The values "Just Posted" and "Today" were replaced with 0. The other inputs all had the form "x day(s) ago", where x goes from 1-30, but at 30 the job age falls into the "30+ days ago" category. There isn't much to do to determine the actual age of these postings, so leaving them at 30 with the understanding that in this column 30 could represent a value much larger was the best option. The strings were then stripped and converted to integers which made them now ready to work with.</p>
+
+            <h4 class="subhead"> Dropping the Dead Weight </h4>
+            <p class="bodypara">At this point, all of the above processes had been made into functions and I wanted to bring them all together. I made one final function that would take a DataFrame through all of the cleaning done so far and give the option to drop the metadata columns (such as page number or keyword used) as well as the option to drop the description column. I wasn't sure if this was something I wanted to do yet, so I only opted to drop the meta columns and kept the job description. The functions are all stored in IndeedClean.py. The two dataframes were cleaned and combined into a single DataFrame, jobs.</p>
+
+            <p class="bodypara">It is important to note that since I have dropped the keyword, I now am only able to tell the analyst jobs from the scientist jobs using the job title column. Additionally, keyword searches can also bring up jobs outside the desired title (for example, there is one software engineering position in the dataset). Thus I created a new column named group, which was assigned a '2' if the job title contained either "science" or "scientist", '1' if the title contained "analyst", and '0' if it contained none of these.</p>
+
+            <h3 class="sechead">Analyzing the Data</h3>
+            <p class="bodypara">Something I had been curious about since starting this process was how the age of a job posting affected the salaries that were currently available on Indeed. Following this, I made two graphs: one for the min salary and one for the max salary, both against the age of their job posting.</p>
+            <img src="../docs/salarymin_by_age.png" alt="salarymin graph" class="image">
+            <img src="../docs/salarymax_by_age.png" alt="salarymax graph" class="image">
+
+            <p class="bodypara">It is evident in both graphs that a large portion of the jobs fall into the 30+ days category. I find this likely to be either large companies that have an ongoing need to hire but don't want to make new listings, companies that have filled the position and not removed it from Indeed, or companies that legitimately have not found a viable candidate to fill the position in more than a month. Without contacting Indeed or the companies (and hoping for a response), there is no way to tell.</p>
+
+            <p class="bodypara">However, another finding in both graphs is that the higher and lower salaries seem to be more focused towards the youngest and oldest postings with the postings in the middle being more clustered towards a median salary. The high outlier in the max salary graph in the 30 days group comes from Netflix. This is a Metadata Specialist position (falling into the "other" category), where in the description they note that the salary ranges from $80,000 to $500,000. For both min and max salary, the correlation is not linear (if there is correlation present) based on observation of the scatter plot and confirmed by the Pearson coefficient for both lying in the range <b>(-0.05,0.05)</b>. Given the relatively low sample size and high aggregation of points at the end, it is difficult to determine if there is any true correlation here. This could be improved by tracking job listings over time and updating their age.</p>
+
+            <h4 class="subhead"> Adding Some Requirements </h4>
+            <p class="bodypara">Anyone who has looked for a job is familiar with the sometimes overwhelming requirements they list. Indeed lists some skills in little boxes on the job cards, but there was no solid way to scrape this data using the spider. If we limit what we want to look at though, we can use the job description text to get more information. To this end, I made a list of common programming languages or data visualization tools: ["python", "sql", "java", "c++", "django", "mongodb", "tableau", "powerbi", "rust", "c#", "css", "perl"] and set about searching the job descriptions for them. The language "R" had to be done separately, since the rest could be found without using regex, but "R" needed a regex search to avoid matching anything else with a capital R. Instead of listing all matching results for each row into a single column I created a column for each of the languages, and set it to True if there was a match. Changing the boolean values to integers, I was then able to calculate the percent of jobs in which each of the languages showed up.</p>
+            <img src="../docs/language_pct.png" alt="language graph" class="image">
+
+            <h3 class="sechead"> Conclusions </h3>
+            <p class="bodypara">From the last graph we see that some flavor of SQL is extremely common in Data Analyst/Science jobs as the main querying language, many jobs like to see Python skills, and Tableau is a common request for data visualization. From there, R is also semi-common for statistical testing, and the remaining languages fall off. Note that although Rust is growing in popularity, neither that nor C are extremely common (in this sample) for data based jobs on Indeed. I would make the argument that Python and SQL are the most important to know for these fields.</p>
+
+            <p class="bodypara">As for salaries, the averages found using a site like Payscale or GlassDoor are more accurate as they have much more data to support them. That given, the listings here still fall within the normal range most of the time. Contract positions are bound to have more variability as the pay may be commission or project based. Looking at jobs with a higher base salary, it seems that the job listings within the last week and the listings that are at least a month old are the best bets to find such a salary. Hearing back on the jobs is an entirely different story, especially for the jobs listed over a month. Additionally, some judgement can be used on job applications, as applying for a Senior Data Science managerial position with no on-the-job experience is perhaps asking to be ignored.</p>
+
+            <h4 class="subhead"> Improving </h4>
+            <p class="bodypara">The processes in the cleaning portion of the code can definitely be optimized, and if I continue scraping Indeed with the same motivation I will work on doing so. For the relatively small DataFrame presented, the functions all performed well and quickly. In the future I would also need to find a way to track jobs that are already listed here without duplicating everything (the job descriptions can get quite large), as well as set the job to run on a consistent basis, which in itself brings many requirements. I could set up a server to store the data and run the scrape at fixed intervals, which over time would make all of the data more accurate.</p>
+
+            <h4 class="subhead">Closing Remarks</h4>
+            <p class="bodypara" id="bottompara">From this, I have learned that perhaps adding Tableau to my arsenal would make me more appealing to employers. In the meantime, I will continue expanding my portfolio with more fun personalized projects.</p>
+        </div>
+
+        <footer>
+            <a href="#topbanner">Return to Top</a>
+        </footer>
+    </body>
+    </div>
+</html>
